@@ -1,12 +1,12 @@
 #!/bin/bash
 set -x
 
-EXECUTABLE=/usr/local/bin/absoluted
-DIR=$HOME/.absolutecore
-FILENAME=absolute.conf
+EXECUTABLE=/usr/local/bin/1x2coind
+DIR=$HOME/.1x2core
+FILENAME=1x2coin.conf
 FILE=$DIR/$FILENAME
 RPCPORT=${RPCPORT:-7209}
-PORT=${PORT:-18888}
+PORT=${PORT:-9214}
 EXTERNALIP=${EXTERNALIP}
 MASTERNODEGENKEY=${MASTERNODEGENKEY}
 
@@ -33,7 +33,7 @@ maxconnections=256
 masternode=1
 discover=0
 externalip=${EXTERNALIP}
-rpcuser=${RPCUSER:-absoluterpc}
+rpcuser=${RPCUSER:-1x2coinrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
 masternodeprivkey=${MASTERNODEGENKEY}
 EOF

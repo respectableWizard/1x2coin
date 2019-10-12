@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-USER=absolute
-chown -R ${USER} /usr/local/bin/absolute*
+USER=1x2coin
+chown -R ${USER} /usr/local/bin/1x2*
 chown -R ${USER} ${HOME}
-cron && exec gosu ${USER} "$@"
+exec gosu ${USER} "$@"

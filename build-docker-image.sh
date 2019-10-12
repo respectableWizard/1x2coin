@@ -14,4 +14,4 @@ function build {
   # docker push $NAMESPACE/$COMPONENT:$VERSION
 }
 
-build absolute $1
+build 1x2coin $1

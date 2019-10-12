@@ -2,7 +2,7 @@
 
 set -e
 
-#  Absolute Masternode docker template
+#  1x2 Masternode docker template
 #  Copyright © 2019 comozo
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ set -e
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-GIT_INFO=$(curl -sL "https://api.github.com/repos/absolute-community/absolute/releases/latest")
+GIT_INFO=$(curl -sL "https://api.github.com/repos/1x2coin/1x2coin/releases/latest")
 
 # Need to make sure I'm getting the right version
 URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep x86_64-linux | grep -v qt)
@@ -33,7 +33,7 @@ if [ -f "./limits.conf" ]; then
     fi
 fi
 
-FILE=absolute
+FILE=1x2
 
 case "$URL" in
     *.tar.gz) 
@@ -48,10 +48,11 @@ case "$URL" in
     ;;
 esac
 
-mv -f "$(find . -name absoluted)" /usr/local/bin
-mv -f "$(find . -name absolute-cli)" /usr/local/bin
+mv -f "$(find . -name 1x2coind)" /usr/local/bin
+mv -f "$(find . -name 1x2coin-cli)" /usr/local/bin
+mv -f "$(find . -name 1x2coin-tx)" /usr/local/bin
 
-mv ./$FILE* /tmp
+rm -Rf ./$FILE*
 
 printf "%s" "$(printf "%s" "$GIT_INFO" | jq .tag_name -r | sed 's\v\\')" > ./version
 

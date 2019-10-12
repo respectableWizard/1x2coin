@@ -5,9 +5,9 @@ ARG USER_ID
 ARG GROUP_ID
 ARG VERSION
 
-ENV USER absolute
+ENV USER 1x2coin
 ENV HOME /home/${USER}
-ENV PORT 18888
+ENV PORT 9214
 
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID:-1000}
@@ -33,24 +33,12 @@ RUN set -x \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && gosu nobody true
 
-RUN set -x \
-    && apt-get update && apt-get install -y libminiupnpc-dev python-virtualenv git virtualenv cron \
-    && mkdir -p /sentinel \
-    && cd /sentinel \
-    && git clone https://github.com/absolute-community/sentinel.git . \
-    && virtualenv ./venv \
-    && ./venv/bin/pip install -r requirements.txt \
-    && touch sentinel.log \
-    && chown -R ${USER} /sentinel \
-    && echo '* * * * * '${USER}' cd /sentinel && SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py >> sentinel.log 2>&1' >> /etc/cron.d/sentinel \
-    && chmod 0644 /etc/cron.d/sentinel \
-    && touch /var/log/cron.log
 
 COPY tools/get-node.sh ./get-node.sh
 
 # set execution rights
 RUN chmod +x ./get-node.sh
-# get latest absolute binaries
+# get latest 1x2 binaries
 RUN ./get-node.sh
 
 EXPOSE ${PORT}
