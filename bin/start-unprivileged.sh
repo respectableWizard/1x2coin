@@ -2,7 +2,7 @@
 set -x
 
 EXECUTABLE=/usr/local/bin/1x2coind
-DIR=$HOME/.1x2core
+DIR=$HOME/.1x2
 FILENAME=1x2coin.conf
 FILE=$DIR/$FILENAME
 RPCPORT=${RPCPORT:-7209}
